@@ -11,7 +11,9 @@
             let klik = false
 
             $("#but").on("click", function () {
-                console.log("klik");
+
+                klik = !klik // zmiana wartości zmiennej
+
                 if (klik) {
                     $("#but")
                         .css("background-color", "pink")
@@ -32,6 +34,7 @@
                         .css("background-color", "white")
                     $("#h")
                         .html("obsługa zdarzeń usunięta")
+                    $("#d1").off("mouseover mouseleave"); //usunięcie zdarzeń
                 }
             })
         })
