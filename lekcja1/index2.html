@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script SRC="js/jq.js"></script>
+    <script>
+        $(document).ready(function () {
+            let klik = false
+
+            $("#but").on("click", function () {
+                console.log("klik");
+                if (klik) {
+                    $("#but")
+                        .css("background-color", "pink")
+                    $("#h")
+                        .html("obsługa zdarzeń dodana")
+                    $("#d1").on("mouseover", function () {
+                        $("#d1")
+                            .html("<b>text bold </b><br><i>text italic</i>")
+                            .css("background", "pink")
+                    })
+                    $("#d1").on("mouseleave", function () {
+                        $("#d1")
+                            .css("background", "bisque")
+                            .html("")
+                    })
+                } else {
+                    $("but")
+                        .css("background-color", "white")
+                    $("#h")
+                        .html("obsługa zdarzeń usunięta")
+                }
+            })
+        })
+
+    </script>
+    <style>
+        #but {
+            background-color: white;
+        }
+
+        #h {
+            color: darkcyan;
+        }
+
+        #d1 {
+            width: 100px;
+            height: 100px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 id="h">T: jquery - zdarzenia</h3>
+    <button id="but">DODAJ / USUŃ</button>
+    <div id="d1"></div>
+</body>
+
+</html>
