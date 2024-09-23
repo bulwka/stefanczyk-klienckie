@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenie 1</title>
+    <script src="jq.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#bt1").on("click", function () {
+                let x = $("#select").val()
+                for (let i = 0; i < x; i++) {
+                    //console.log(new Date().getMilliseconds());
+                    let dv = $("<div>").addClass("divy").html(i)
+                        .on("click", function () {
+                            let alert = confirm("czy usunac?")
+                            if (alert) {
+                                $(this).remove()
+                            }
+
+                        })
+                    $("#main").append(dv)
+                }
+            })
+            $("#bt2").on("click", function () {
+                $("#main").empty()
+            })
+        })
+
+
+    </script>
+    <style>
+        .divy {
+            background-color: pink;
+            border: 2px solid lightgray;
+            width: 300px;
+            height: 30px;
+            text-align: center;
+            margin: auto;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Pętla for, dynamiczne tworzenie i usuwanie htmla cz.1</h1>
+    <button id="bt1">UTWÓRZ MENU</button>
+    <button id="bt2">USUŃ MENU</button>
+    <select id="select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <div id="main"></div>
+</body>
+
+</html>

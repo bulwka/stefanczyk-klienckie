@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenie 2</title>
+    <script src="jq.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(window).on("mouseup", function (e) {
+                console.log("x: " + e.clientX + ", y: " + e.clientY)
+            })
+            $(window).on("mousedown", function (e) {
+                $(window).on("mousemove", function (e) {
+                    $("#d2").css("left", e.clientX - 2 + "px")
+                    let percent = e.clientX / $(window).width * 100
+                    $("#d1").width(percent + "%")
+                    $("#d3")
+                        .width((100 - percent) + "%")
+                        .css("left", (percent) + "%")
+                })
+
+            })
+            $(window).on("mouseup", function (e) {
+                $(window).off("mousemove")
+            })
+            $("#d2").on("mouseup", function () {
+                $(window).off
+            })
+        })
+    </script>
+    <style>
+        #d1 {
+            background-color: pink;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            font-size: 300px;
+            text-align: center;
+        }
+
+        #d3 {
+            background-color: cyan;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            font-size: 300px;
+            text-align: center;
+        }
+
+        #d2 {
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2%;
+            height: 100%;
+            cursor: move;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1">A</div>
+    <div id="d2"> </div>
+    <div id="d3">B</div>
+</body>
+
+</html>
