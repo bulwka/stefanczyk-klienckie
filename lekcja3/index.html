@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pole {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray;
+            position: absolute;
+            border-radius: 15px;
+        }
+
+        #main {
+            position: absolute;
+            top: 150px;
+        }
+
+        .player1 {
+            border-radius: 50%;
+            background-color: hotpink;
+            width: 50px;
+            height: 50px;
+            top: 300px;
+            left: 80px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .player2 {
+            border-radius: 50%;
+            background-color: cyan;
+            width: 50px;
+            height: 50px;
+            top: 300px;
+            left: 140px;
+            position: absolute;
+            z-index: 1;
+
+        }
+    </style>
+    <script src="jq.js"></script>
+    <script>
+        $(document).ready(function () {
+            let size = 5;
+            let left = 0;
+            let top = 0;
+            let tab = []
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+
+                    let kwadraty = $("<div>").addClass("pole").css("left", i * 55).css("top", j * 55)
+                        .on("click", function (e) {
+                            $(this).css("background-color", "#f5e282")
+                            let obj =
+                            {
+                                x: $(this).css("left"), y: $(this).css("top"),
+                            }
+                            tab.push(obj)
+                            //console.log(tab)
+                        })
+                    $("#main").append(kwadraty)
+
+                }
+            }
+            $("#bt0").on("click", function () {
+                $(".player1").css("left", tab[0].x).css("top", tab[0].y);
+                $(".player2").css("left", tab[(tab.length - 1)].x).css("top", tab[(tab.length - 1)].y)
+                //console.log(le)
+            })
+            klik = true
+            $("bt1").on("click", function () {
+
+                klik = !klik
+                for (let i = 0; i < tab.length; i++) {
+                    if (klik) {
+                        $(".player1").css("left", tab[i].x).css("top", tab[i].y);
+                    }
+                    else {
+                        $(".player2").css("left", tab[(tab.length - 1 - i)].x).css("top", tab[(tab.length - 1 - i)].y)
+                    }
+
+                }
+            }
+            )
+        })
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Zadanie: Labirynt - tablice obiektów</h1>
+    <button id="bt0">START GAME</button>
+    <button id="bt1">NEXT MOVE</button>
+    <button id="bt2">RESET GAME</button>
+    <br>
+    <div id="main">
+        <div class="player1"></div>
+        <div class="player2"></div>
+    </div>
+</body>
+
+</html>
