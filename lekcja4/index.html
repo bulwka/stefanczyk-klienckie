@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        table {
+            margin: 0 auto;
+
+        }
+
+        .td {
+            width: 100px;
+            padding: 10px;
+            height: 30px;
+
+            background-color: lightpink;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 25px;
+        }
+
+        .td1 {
+            width: 100px;
+            padding: 10px;
+            height: 30px;
+            border: 2px solid cyan(212, 142, 154);
+            background-color: lightblue;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 25px;
+        }
+
+        .td2 {
+            width: 100px;
+            padding: 10px;
+            height: 30px;
+            border: 2px solid cyan(212, 142, 154);
+            background-color: violet;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 25px;
+        }
+    </style>
+    <script src="jq.js"></script>
+    <script>
+        $(document).ready(function () {
+            let lps = ["lp", "cena", "produkt"]
+            let ceny = ["5,60", "3,23", "7,45", "10,00", "3,20"]
+            let produkty = ["chleb", "mąka", "masło", "kefir", "dżem"]
+
+            let td = $("<td>") // komórka tabeli
+
+
+            $("#bt1").on("click", function () {
+
+                let tr = $("<tr>")// wiersz tabeli
+                $("#mainTable").append(tr)
+                for (let j = 0; j < lps.length; j++) {
+                    let td = $("<td>").addClass("td").html(lps[j])// komórka tabeli
+
+                    tr.append(td)
+                }
+
+
+                for (let i = 0; i < ceny.length; i++) {
+
+                    let tr1 = $("<tr>")// wiersz tabeli
+                    let td0 = $("<td>").addClass("td1").html(i + 1)
+                    let td1 = $("<td>").addClass("td1").html(ceny[i])
+                    let td2 = $("<td>").addClass("td1").html(produkty[i])
+
+                    tr1.append(td0, td1, td2)
+                    $("#mainTable").append(tr1)
+                }
+                let suma = 0
+                for (i = 0; i < ceny.length; i++) {
+                    const x = ceny[i]
+                    const y = x.replace(",", ".")
+                    const z = parseFloat(y)
+
+                    suma = suma + z
+
+
+                }
+
+                let tr3 = $("<tr>")
+                let td4 = $("<td>").addClass("td2").html("cena")
+                let td5 = $("<td>").addClass("td2").attr("colspan", 2).html(suma)
+                tr3.append(td4, td5)
+                $("#mainTable").append(tr3)
+
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <h1> Tablice i tabela html</h1>
+    <button id="bt1">Utwórz tabelę</button>
+    <div id="main">
+        <table id="mainTable" class="table"></table>
+    </div>
+</body>
+
+</html>
