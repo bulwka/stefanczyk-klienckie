@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .red {
+            background-color: rgb(207, 39, 109);
+        }
+
+        .green,
+        .select {
+            background-color: rgb(94, 10, 69);
+        }
+
+        .blue {
+            background-color: rgb(18, 124, 124);
+        }
+    </style>
+    <script src="../jq.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            const columns = ["produkt", "cena / szt", "liczba", "wartość"]
+            const products = [{ price: "2.22", product: "kurtka" },
+            { price: "3.34", product: "szalik" },
+            { price: "4.44", product: "rękawiczki" },
+            { price: "5.55", product: "buty" },
+            { price: "6.66", product: "bluza" },
+            { price: "7.77", product: "coś na wieczór" },
+            ]
+            let tr = $("<tr>") // wiersz tabeli
+            for (let i = 0; i < columns.length; i++) {
+                let td = $("<td>")
+                    .html(columns[i])
+                    .addClass("red") // komórka tabeli
+                tr.append(td)
+                $("#table").append(tr)
+            }
+
+
+
+            for (let j = 0; j < products.length; j++) {
+
+                let select = $("<select>")
+                for (let i = 0; i < 51; i++) {
+                    let option = $("<option value='" + i + "'>" + i + "</option>")
+                    select.append(option)
+                }
+
+
+
+
+
+
+
+                let tr1 = $("<tr>") // wiersz tabeli
+                let td1 = $("<td>").html(products[j].product).addClass("green") // komórka tabeli
+                let td2 = $("<td>").html(products[j].price).addClass("blue") // komórka tabeli
+                let td3 = $("<td>").html(select).addClass("select")
+                let td4 = $("<td>").html(0).addClass("green")
+
+                tr1.append(td1, td2, td3, td4)
+                $("#table").append(tr1)
+            }
+
+             $(".select").on("change", function () {
+                 let wartosc = $(this).val()
+let cena = $
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <table id="table"></table>
+</body>
+
+</html>
