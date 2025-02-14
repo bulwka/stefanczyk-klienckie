@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 2px blue dotted;
+            padding: 10px;
+        }
+
+        .pasek {
+            background-color: lightgray;
+            width: 300px;
+            border-radius: 20px;
+            height: 30px;
+        }
+
+        .linia {
+
+            z-index: 3;
+            height: 30px;
+            border-radius: 20px;
+            width: 300px;
+        }
+
+        .kolo {
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+            z-index: 5;
+            text-align: center;
+            color: white;
+            position: absolute;
+
+        }
+
+        .cos {
+            text-align: center;
+        }
+    </style>
+    <script src="jq.js"></script>
+    <script>
+        $(document).ready(function () {
+            const tab = [
+                { type: "inteligencja interpersonalna", c1: "f6ac55", c2: "fa8a02", size: 90 },
+                { type: "inteligencja kinestetyczna", c1: "3dc6f4", c2: "0ebaea", size: 80 },
+                { type: "inteligencja muzyczna", c1: "abd66d", c2: "9fc25e", size: 70 },
+                { type: "inteligencja lingwistyczno-językowa", c1: "f05156", c2: "ff4b4c", size: 60 },
+                { type: "inteligencja wizualno-przestrzenna", c1: "f8a0c6", c2: "ff79aa", size: 70 },
+                { type: "inteligencja logiczno-matematyczna", c1: "a06db0", c2: "984190", size: 80 },
+                { type: "inteligencja intrapersonalna", c1: "fdd542", c2: "f5c300", size: 90 },
+            ]
+
+            let a = 0
+
+            // tr.append(td)
+
+            for (let i = 0; i < tab.length; i++) {
+
+
+                let x = (tab[i].size * 300) / 100;
+
+                let tr = $("<tr>") // wiersz tabeli
+                let cl1 = tab[i].c1
+                //  console.log(cl1)
+                let div1 = $("<div>").addClass("pasek")
+                let div2 = $("<div class='linia'>").css("z-index", 3).css("background-color", "#" + cl1).css("width", x)
+                let div3 = $("<div>").addClass("kolo").css("background-color", "#" + tab[i].c2).html(tab[i].size).css("left", 252 + x)//.addClass("kolko" + i)
+                $(div1).append(div3, div2)
+                let td = $("<td>").html(tab[i].type) // komórka tabeli
+                let td1 = $("<td>").html(div1) // komórka tabel
+                let td3 = $("<td>").html(tab[i].size)
+                tr.append(td, td1, td3)
+                $("#mainTable").append(tr)
+
+                $(".kolo").on("mousemove", function (e) {
+                    //let y = 266
+                    let c = e.clientX - $(this).offset().left
+                    console.log(c)
+                    let bat = []
+                    let obj = { x: e.clientX, y: e.clientY }
+                    bat.push(obj)
+                    // console.log(bat)
+                    let y = (tab[i].size + c)
+                    $(this).html(y)
+                    $(this).css("left", obj.x)
+                    //  console.log("x: " + e.clientX + ", y: " + e.clientY)
+                })
+                //284 = 0 
+            }
+            $(document).on("click", function (e) {
+                console.log("x: " + e.clientX + ", y: " + e.clientY)
+            })
+            let u = 0
+            for (let i = 0; i < tab.length; i++) {
+                u += tab[i].size
+            }
+            p = (u / 7).toFixed(0)
+            let tr9 = $("<tr>").html("Twoja średnia inteligencja to " + p).addClass("cos") // wiersz tabeli
+            $("#mainTable").append(tr9)
+        })
+
+    </script>
+</head>
+
+<body>
+    <table id="mainTable"></table>
+</body>
+
+</html>
