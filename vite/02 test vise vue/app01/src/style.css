@@ -1,0 +1,10 @@
+button {
+    background-color: hotpink;
+    border-radius: 10px;
+    border-color: rgb(236, 168, 202);
+    padding: 6px;
+    font-size: 10px;
+    margin: 5px;
+    clear: both;
+    overflow: hidden;
+}
