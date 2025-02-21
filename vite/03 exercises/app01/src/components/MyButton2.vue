@@ -1,6 +1,7 @@
 <template>
     <div>
-        <button :style="{ background: prop2 }" type=" button" @click="click">{{ title }}</button>
+        <button :style="{ background: prop2 }" type="button" @click="click"> {{ prop1 }} </button>
+        <p>background passed from app: {{ prop2 }}</p>
     </div>
 </template>
 
@@ -31,6 +32,5 @@ button {
     margin: 5px;
     clear: both;
     overflow: hidden;
-
 }
 </style>
